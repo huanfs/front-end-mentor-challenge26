@@ -19,7 +19,7 @@ const Cart_contents_here = (props) => {
                                 <strong>{`$${props.price*props.qtd}`}</strong>
                             </div>
                         </div>
-                        <img src={trash}/>
+                        <img src={trash} onClick={props.action} className="delete"/>
                         </>
                     )}
                     {props.qtd<=0 && (
