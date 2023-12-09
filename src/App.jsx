@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import './App.scss'
+import './App.css'
 /*images header*/
 import logo from "./assets/images/logo.svg";
 import icon_cart from "./assets/images/icon-cart.svg";
@@ -64,6 +64,15 @@ function openCart(){
   function addToCart(){
     setCont(contage);
   }
+
+
+
+
+
+
+
+
+
   /*show products*/
   const[source, setSource] = useState(product_1);
   function changeSource(t){
@@ -77,6 +86,29 @@ function openCart(){
       i.addEventListener("click", changeSource);
     })
   },[])
+
+  /*function change the main image to show product details*/ 
+  useEffect(()=>{
+    let arrows = document.querySelectorAll(".controls img");
+    arrows.forEach((i)=>{
+      i.addEventListener("click", change);
+    })
+  },[])
+  function change(){
+    let product = document.querySelectorAll(".products img")[2];
+    if(product.src.includes("product-1")){
+      product.src=product_2;
+    }
+    else if(product.src.includes("product-2")){
+      product.src=product_3;
+    }
+    else if(product.src.includes("product-3")){
+      product.src=product_4;
+    }
+    else if(product.src.includes("product-4")){
+      product.src=product_1;
+    }
+  }
   /*remove from cart */
   function removeFromCart(){
     cont>0?setCont(cont=>cont-1):null;
@@ -84,7 +116,6 @@ function openCart(){
   return (
     <>
       <header>
-      {/* <div className="mobile-menu"></div> */}
         {width<500 && (
           <>
           <img src={menu_open} className="menu-icon" onClick={openClose}/>
