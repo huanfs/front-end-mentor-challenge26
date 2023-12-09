@@ -37,14 +37,20 @@ function openCart(){
 }
   /*counter*/
   const[cont, setCont] = useState(0);
+  const[contage, setContage] = useState(0);
   function count(t){
     if(t.target.className=="increase"){
-        cont<3?setCont(cont=>cont+1):setCont(3)
-    }
-    else if(t.target.className=="decrease"){
-        cont<=0?setCont(0):setCont(cont=>cont-1)
-    }
-}
+            contage>=3?setContage(3):setContage(contage=>contage+1);
+          }
+          else if(t.target.className=="decrease"){
+            contage<=0?setContage(0):setContage(contage=>contage-1);
+          }
+  }
+  //função que salva contage como estado de cont para que o valor
+  //seja exibido no carrinho
+  function addToCart(){
+    setCont(contage);
+  }
   /*show products*/
   const[product, setPorduct] = useState(product_1);
   useEffect(()=>{
@@ -75,7 +81,7 @@ function openCart(){
           <div className="user">
             <div className="cartIcon">
               <Cart icon={icon_cart} action={openCart} qtd={cont}/>
-              <Cart_contents_here qtd={cont} price={129.99} source={product_1}/>
+              <Cart_contents_here qtd={cont}set={setCont} price={129.99} source={product_1}/>
             </div>
             <Profile_picture picture={picture}/>
           </div>
@@ -116,8 +122,8 @@ function openCart(){
             </div>
           </div>
           <div className="action">
-            <Counter action={count} total={cont}/>
-            <button type="button" className="add"><img src={icon_cart}/>add to cart</button>
+            <Counter action={count} total={contage}/>
+            <button type="button" className="add" onClick={addToCart}><img src={icon_cart}/>add to cart</button>
           </div>
         </section>
       </main>

@@ -1,7 +1,8 @@
 import trash from "../assets/images/icon-delete.svg";
 const Cart_contents_here = (props) => {
     function checkout(){
-        alert("your order is comming");
+        alert("our order is comming")
+        props.set(0)
     }
     return(
         <div className="cart">
